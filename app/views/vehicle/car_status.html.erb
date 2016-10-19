@@ -1,0 +1,39 @@
+Make: <%=@new_car.make%>
+<br/>
+Year: <%=@new_car.year%>
+<br/>
+Speed: <%=@new_car.speed%>
+<br/>
+Lights: <%=@new_car.lights%>
+<br/>
+Parking Brake Status: <%=@new_car.parking_brake%>
+
+<% if @new_car.parking_brake == "on" %>
+<form action="/vehicle/accelerate" method="get">
+  <input type="submit" value="Accelerate" disabled/>
+</form>
+<% else %>
+<form action="/vehicle/accelerate" method="get">
+  <input type="submit" value="Accelerate"/>
+</form>
+<% end %>
+
+<form action="/vehicle/brake" method="get">
+  <input type="submit" value="Brake"/>
+</form>
+
+<form action="/vehicle/lights" method="get">
+  <input type="submit" value="lights switch">
+</form>
+
+<form action="/vehicle/set_parking_brake" method="get">
+  <input type="radio" name="parking_brake" value="Parking_Brake_On" checked> Parking Brake On <br/>
+
+  <input type="radio" name="parking_brake" value="Parking_Brake_Off"> Parking Brake Off <br/>
+
+  <% if @new_car.speed == 0 %>
+    <input type="submit" value="submit"/>
+  <% else %>
+    <input type="submit" value="submit" disabled/>
+  <% end %>
+</form>
